@@ -2,8 +2,6 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-
-
 console.log("Hello, Franc!!")
 playGame();
 
@@ -30,40 +28,16 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice){
-    
-    if (humanChoice == "rock") {
-        if(computerChoice == "rock"){
-            console.log("TIE!")
-        }
-        else if (computerChoice == "paper"){
-            computerScore++;
-        }
-        else if (computerChoice == "scissors") {
-            humanScore++;
-        }
+    if (humanChoice == computerChoice) {
+        console.log("TIE!")
     }
-    else if (humanChoice == "paper") {
-        if(computerChoice == "paper"){
-            console.log("TIE!")
-        }
-        else if (computerChoice == "scissors"){
-            computerScore++;
-        }
-        else if (computerChoice == "rock") {
-            humanScore++;
-        }
+    if ((humanChoice == "rock" && computerChoice == "scissors") || (humanChoice == "paper" && computerChoice == "rock") || (humanChoice == "scissors" && computerChoice == "paper")){
+        humanScore++;
     }
-    else if (humanChoice == "scissors"){
-        if(computerChoice == "scissors"){
-            console.log("TIE!")
-        }
-        else if (computerChoice == "rock"){
-            computerScore++;
-        }
-        else if (computerChoice == "paper") {
-            humanScore++;
-        }
+    if ((computerChoice == "rock" && humanChoice == "scissors") || (computerChoice == "paper" && humanChoice == "rock") || (computerChoice == "scissors" && humanChoice == "paper")) {
+        computerScore++;
     }
+
 }
 
 function playGame() {
