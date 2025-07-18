@@ -37,7 +37,6 @@ function playRound(humanChoice, computerChoice){
     if ((computerChoice == "rock" && humanChoice == "scissors") || (computerChoice == "paper" && humanChoice == "rock") || (computerChoice == "scissors" && humanChoice == "paper")) {
         computerScore++;
     }
-
 }
 
 function playGame() {
