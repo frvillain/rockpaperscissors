@@ -1,17 +1,17 @@
 let humanScore = 0;
 let computerScore = 0;
+let roundWinner = '';
 
 
 console.log("Hello, Franc!!")
 
-const btnRock = document.querySelector("#btnRock")
-btnRock.addEventListener("click", ()=> playRound("rock",getComputerChoice()));
+const btnRock = document.getElementById('btnRock')
+const btnPaper = document.getElementById('btnPaper')
+const btnScissors = document.getElementById('btnScissors')
 
-const btnPaper =document.querySelector("#btnPaper")
-btnPaper.addEventListener("click", ()=> playRound("paper",getComputerChoice()));
-
-const btnScissors =document.querySelector("#btnScissors")
-btnScissors.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+btnRock.addEventListener("click", ()=> handleClick("rock"));
+btnPaper.addEventListener("click", ()=> handleClick("paper"));
+btnScissors.addEventListener("click", () => handleClick("scissors"));
 
 // playGame();
 
@@ -37,6 +37,28 @@ function getComputerChoice() {
     }
 }
 
+function handleClick(humanChoice) {
+    if (isGameOver()) {
+        console.log("Game Over!")
+        return
+    }
+    else {
+        playRound(humanChoice,getComputerChoice())
+    }
+
+    if (isGameOver()) {
+        console.log("Game Over!")
+        resetGame();
+    }
+    
+
+    
+}
+
+
+const playerScorePara = document.getElementById('playerScore')
+const computerScorePara = document.getElementById('computerScore')
+
 function playRound(humanChoice, computerChoice){
     console.log(`human: ${humanChoice}`);
     console.log(`computer: ${computerChoice}`);
@@ -51,6 +73,28 @@ function playRound(humanChoice, computerChoice){
         computerScore++;
         console.log("computer score!")
     }
+
+    updateScores();
+
+}
+
+function updateScores() {
+    playerScorePara.textContent = `Player Score : ${humanScore}`
+    computerScorePara.textContent = `Computer Score : ${computerScore}`
+}
+
+function isGameOver() {
+    if (humanScore === 5 || computerScore === 5){
+        console.log("GAME OVER!")
+        return true
+    } 
+    else
+        return false
+}
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
 }
 
 function playGame() {
@@ -78,8 +122,7 @@ function playGame() {
     else {
         console.log("It's a tie!")
     }
-
     console.log("Game Over!")
 
-
 }
+
